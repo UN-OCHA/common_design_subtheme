@@ -22,3 +22,8 @@ regions:
   sidebar_first: First sidebar
   footer_soft: Soft footer
   footer_navigation: Footer navigation
+
+# Add implementation-specific styles to base theme components
+# libraries-extend:
+#   common_design/cd-article-teaser:
+#     - common_design_subtheme/cd-article-teaser
