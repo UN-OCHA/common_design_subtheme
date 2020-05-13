@@ -86,6 +86,35 @@ function sassCompileTask() {
     .pipe(reload({stream: true}));
 };
 
+//——————————————————————————————————————————————————————————————————————————————
+// Components
+//——————————————————————————————————————————————————————————————————————————————
+function componentCompileTask() {
+  browserSync.notify(`Compiling Components...`);
+
+  return gulp.src('./components/*/*.scss')
+    .pipe(plumber())
+    .pipe(gulpif(process.env.NODE_ENV !== 'production', sourcemaps.init()))
+    .pipe(sass({outputStyle: 'nested'}).on('error', sass.logError))
+    .pipe(postcss([
+      prefix({
+        browsers: ['>1%', 'iOS 9'],
+        cascade: false,
+      }),
+      cssnano(),
+    ]))
+    .pipe(gulpif(process.env.NODE_ENV !== 'production', sourcemaps.write('./')))
+    // rename the current file's parent directory
+    .pipe(rename(function (file) {
+      // file.dirname = current folder, your "scss"
+      // then get the parent of the current folder, e.g., "folder1", "folder2", etc.
+      let parentFolder = path.dirname(file.dirname)
+      // set each file's folder to "folder1/css", "folder2/css", etc.
+      file.dirname = path.join(parentFolder, 'components/' + file.dirname + '/');
+    }))
+
+    .pipe(gulp.dest('.'));
+};
 
 //——————————————————————————————————————————————————————————————————————————————
 // Sass Linting
@@ -101,7 +130,7 @@ function sassLintTask() {
 //——————————————————————————————————————————————————————————————————————————————
 // Sass
 //——————————————————————————————————————————————————————————————————————————————
-const sassTask = gulp.series(sassLintTask, sassCompileTask);
+const sassTask = gulp.series(sassLintTask, sassCompileTask, componentCompileTask);
 exports.sass = sassTask;
 
 
@@ -181,7 +210,7 @@ exports.js = jsTask;
 //——————————————————————————————————————————————————————————————————————————————
 function watchTask() {
   gulp.watch(['js/cd-*.js'], jsTask);
-  gulp.watch(['sass/**/*.scss'], sassTask);
+  gulp.watch(['sass/**/*.scss', 'components/**/*.scss'], sassTask);
 };
 exports.watch = watchTask;
 
