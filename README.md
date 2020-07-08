@@ -7,16 +7,16 @@ This can be used as a starting point for implementations. Add components, overri
 Clone this repo to /themes/custom/ and optionally rename the folder and associated theme files from
 `common_design_subtheme` to your theme name.
 
-### Customise the logo
-- Set the logo `logo: 'img/logos/logo.svg'` in the `common_design_subtheme.info.yml` file, and in the `sass/cd-header/_cd-logo.scss` partial override file.
-- Adjust the grid column width in `sass/cd-header/_cd-header.scss` partial override file to accommodate the logo.
-
-### Change the path of the libraries
-In the `common_design_subtheme.info.yml` change the path of the global style sheet to reflect the new sub theme name.
+### Path of the libraries
+If the subtheme name changes, the path of the global style sheet in `common_design_subtheme.info.yml` needs to reflect the new sub theme name.
 ```
 libraries:
 - common_design_subtheme/global-styling
 ```
+
+### Customise the logo
+- Set the logo `logo: 'img/logos/logo.svg'` in the `common_design_subtheme.info.yml` file, and in the `sass/cd-header/_cd-logo.scss` partial override file.
+- Adjust the grid column width in `sass/cd-header/_cd-header.scss` partial override file to accommodate the logo.
 
 ### Customise the favicon and homescreen icons
 Replace the favicon in the theme's root, and the homescreen icons in `img/` with branded versions
