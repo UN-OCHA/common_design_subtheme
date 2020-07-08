@@ -4,7 +4,7 @@ A sub theme, extending [common_design](https://github.com/UN-OCHA/common_design)
 
 This can be used as a starting point for implementations. Add components, override and extend base theme as needed. Refer to [Drupal 8 Theming documentation](https://www.drupal.org/docs/8/theming) for more.
 
-Clone this repo to /themes/custom/ and rename the folder and associated theme files from
+Clone this repo to /themes/custom/ and optionally rename the folder and associated theme files from
 `common_design_subtheme` to your theme name.
 
 ### Customise the logo
