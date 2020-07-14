@@ -15,3 +15,24 @@
     border-color: transparent transparent $implementation-primary;
   }
 }
+
+// Control dropdown behaviour for specific components.
+// These rules need to be included here (and not in the components themselves) due to the load order of component CSS
+// and execution of cd-dropdown.js which uses getPropertyValue('--dropdown') computed style.
+.cd-filter {
+  @include tablet {
+    --dropdown: false;
+
+    // This is needed for IE11
+    // No support for CSS custom properties means
+    // --dropdown: false; property on nav container is not recognised
+    // so the cd-dropdown.js does not run the updateToggler function
+    // which toggles the data-cd-hidden attribute.
+    // This displays the nav regardless of that attribute value.
+    @media all and (-ms-high-contrast: none) {
+      &[data-cd-hidden='true'] {
+        display: block;
+      }
+    }
+  }
+}
