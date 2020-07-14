@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Template overrides, preprocess, and alter hooks for the Common Design theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+* Implements template_preprocess_region().
+*/
+function common_design_subtheme_preprocess_region(&$variables) {
+  $variables['has_filter'] = FALSE;
+
+  if (isset($variables['region']) && $variables['region'] == 'sidebar_first') {
+    $view_id = \Drupal::routeMatch()->getParameter('view_id');
+
+    // Add the Views IDs to the array
+    $includeViewsInSidebar = [];
+
+    if (in_array($view_id['#id'], $includeViewsInSidebar)) {
+      $variables['attributes']['class'][] = 'cd-filter';
+    }
+    $variables['has_filter'] = TRUE;
+  }
+
+  // Create the $content variable that templates expect.
+  $variables['content'] = $variables['elements']['#children'];
+  $variables['region'] = $variables['elements']['#region'];
+}
