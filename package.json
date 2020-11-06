@@ -7,7 +7,7 @@
   "license": "GPL-2.0",
   "dependencies": {
     "autoprefixer": "^8.6.5",
-    "browser-sync": "^2.26.12",
+    "browser-sync": "^2.26.13",
     "chalk": "^3.0.0",
     "child_process": "^1.0.2",
     "cssnano": "^4.1.10",
@@ -38,7 +38,7 @@
     "build": "gulp build"
   },
   "devDependencies": {
-    "dot-prop": ">=5.1.1",
+    "dot-prop": "^6.0.0",
     "eslint": "^6.8.0",
     "git-hooks": "^1.1.10",
     "minimist": "^1.2.5",
