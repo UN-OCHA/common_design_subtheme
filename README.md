@@ -1,4 +1,6 @@
-# OCHA Common Design sub theme for Drupal 8
+# Deprecated: OCHA Common Design sub theme for Drupal 8
+
+## The sub theme can be found as part of the [base theme repo](https://github.com/UN-OCHA/common_design/tree/main/common_design_subtheme)
 
 A sub theme, extending [common_design](https://github.com/UN-OCHA/common_design) base theme.
 
